@@ -14,6 +14,9 @@ export class Queue<T> {
   private _headIndex = 0;
   private _tailIndex = 0;
 
+  get size() {
+    return this._headIndex - this._tailIndex;
+  }
   // 入队
   enqueue(...elements: T[]) {
     for (let i = 0; i < elements.length; i++) {
@@ -27,12 +30,29 @@ export class Queue<T> {
   dequeue() {
     if (this.isEmpty()) return undefined;
     const element = this._store[this._tailIndex];
+    delete this._store[this._tailIndex];
     this._tailIndex++;
     return element;
   }
 
+  peek() {
+    if (this.isEmpty()) return undefined;
+    return this._store[this._tailIndex];
+  }
+
   isEmpty() {
-    return this._headIndex === this._tailIndex;
+    return !this.size;
+  }
+
+  clear() {
+    this._store = {};
+    this._headIndex = 0;
+    this._tailIndex = 0;
+  }
+
+  toString() {
+    if (this.isEmpty()) return '';
+    return Object.values(this._store).toString();
   }
 
 }

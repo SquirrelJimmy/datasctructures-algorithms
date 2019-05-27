@@ -15,29 +15,29 @@ export class Queue<T> {
   private _tailIndex = 0;
 
   get size() {
-    return this._headIndex - this._tailIndex;
+    return this._tailIndex - this._headIndex;
   }
   // 入队
   enqueue(...elements: T[]) {
     for (let i = 0; i < elements.length; i++) {
       const element = elements[i];
-      this._store[this._headIndex] = element;
-      this._headIndex++;
+      this._store[this._tailIndex] = element;
+      this._tailIndex++;
     }
   }
 
   // 出队
   dequeue() {
     if (this.isEmpty()) return undefined;
-    const element = this._store[this._tailIndex];
-    delete this._store[this._tailIndex];
-    this._tailIndex++;
+    const element = this._store[this._headIndex];
+    delete this._store[this._headIndex];
+    this._headIndex++;
     return element;
   }
 
   peek() {
     if (this.isEmpty()) return undefined;
-    return this._store[this._tailIndex];
+    return this._store[this._headIndex];
   }
 
   isEmpty() {

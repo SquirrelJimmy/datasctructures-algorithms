@@ -35,6 +35,10 @@ export class Stack<T extends any> {
     this._store = [];
   }
 
+  toArray() {
+    return this._store;
+  }
+
   toString() {
     return this._store.toString();
   }

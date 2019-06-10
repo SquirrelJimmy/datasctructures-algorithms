@@ -28,7 +28,7 @@ export class Queue<T> {
 
   // 出队
   dequeue() {
-    if (this.isEmpty()) return undefined;
+    if (this.isEmpty()) return null;
     const element = this._store[this._headIndex];
     delete this._store[this._headIndex];
     this._headIndex++;
@@ -36,7 +36,7 @@ export class Queue<T> {
   }
 
   peek() {
-    if (this.isEmpty()) return undefined;
+    if (this.isEmpty()) return null;
     return this._store[this._headIndex];
   }
 
@@ -48,6 +48,10 @@ export class Queue<T> {
     this._store = {};
     this._headIndex = 0;
     this._tailIndex = 0;
+  }
+
+  toArray() {
+    return Object.values(this._store);
   }
 
   toString() {

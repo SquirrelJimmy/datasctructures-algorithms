@@ -34,7 +34,7 @@ export class Dequeue<T> {
   }
 
   removeFront() {
-    if (this.isEmpty()) undefined;
+    if (this.isEmpty()) null;
     const front = this._store[this._headIndex];
     delete this._store[this._headIndex];
     this._headIndex++;
@@ -42,7 +42,7 @@ export class Dequeue<T> {
   }
 
   removeEnd() {
-    if (this.isEmpty()) undefined;
+    if (this.isEmpty()) null;
     const end = this._store[this._tailIndex - 1];
     delete this._store[this._tailIndex - 1];
     this._tailIndex--;
@@ -50,12 +50,12 @@ export class Dequeue<T> {
   }
 
   peekFront() {
-    if (this.isEmpty()) return undefined;
+    if (this.isEmpty()) return null;
     return this._store[this._headIndex];
   }
 
   peekEnd() {
-    if (this.isEmpty()) return undefined;
+    if (this.isEmpty()) return null;
     return this._store[this._tailIndex - 1];
   }
 
@@ -67,6 +67,10 @@ export class Dequeue<T> {
     this._store = {};
     this._headIndex = 0;
     this._tailIndex = 0;
+  }
+
+  toArray() {
+    return Object.values(this._store);
   }
 
   toString() {

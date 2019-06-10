@@ -17,7 +17,7 @@ export class Stack<T extends any> {
   }
 
   pop() {
-    if (this.isEmpty()) return undefined;
+    if (this.isEmpty()) return null;
     this._index--;
     const element = this._store[this._index];
     delete this._store[this._index];
@@ -25,13 +25,17 @@ export class Stack<T extends any> {
   }
 
   peek() {
-    if (this.isEmpty()) return undefined;
+    if (this.isEmpty()) return null;
     return this._store[this.size - 1];
   }
 
   clear() {
     this._store = {};
     this._index = 0;
+  }
+
+  toArray() {
+    return Object.values(this._store);
   }
 
   toString() {

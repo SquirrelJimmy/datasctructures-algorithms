@@ -47,8 +47,10 @@ export class LinkedList<T> {
     if (position < 0 || position > this._count) return false;
     const node = new Node(element);
     if (position === 0) {
-      const current = this._head;
-      node.next = current;
+      if (this._head) {
+        const current = this._head;
+        node.next = current;
+      }
       this._head = node;
     } else {
       const prev = <Node<T>>this.getElementAt(position - 1);

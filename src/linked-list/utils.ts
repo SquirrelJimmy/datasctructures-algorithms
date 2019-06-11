@@ -14,8 +14,8 @@ export class Node<T> {
 export class DeNode<T> extends Node<T> {
   constructor(
     public value: T,
-    public next: Node<T> | null = null,
-    public prev: Node<T> | null = null,
+    public next: DeNode<T> | null = null,
+    public prev: DeNode<T> | null = null,
   ) {
     super(value, next);
   }
